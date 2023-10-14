@@ -10,24 +10,11 @@ sealed class DrawerBarScreen(
     val title: String,
     val selectedIcon: ImageVector
 ) {
-    object Info: DrawerBarScreen(
-        route = "weight",
-        title = "Info",
-        selectedIcon = Icons.Default.Info
-    )
-    object Info2: DrawerBarScreen(
-        route = "weight",
-        title = "Info",
-        selectedIcon = Icons.Default.Info
-    )
-    object Info3: DrawerBarScreen(
-        route = "weight",
-        title = "Info",
-        selectedIcon = Icons.Default.Info
-    )
+    /*
     object IdealWeight: DrawerBarScreen(
         route = "weight",
         title = "Ideal Weight",
         selectedIcon = Icons.Default.Person
     )
+    */
 }

@@ -2,6 +2,7 @@ package com.aliduman.calculateeverything.screens
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -38,12 +39,19 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.rememberNavController
 import com.aliduman.calculateeverything.DrawerBarScreen
 import com.aliduman.calculateeverything.DrawerNavGraph
+import com.aliduman.calculateeverything.R
+import com.aliduman.calculateeverything.ui.theme.DarkGray
+import com.aliduman.calculateeverything.ui.theme.DarkRed
+import com.aliduman.calculateeverything.ui.theme.MediumGray
 import kotlinx.coroutines.launch
 
 
@@ -55,14 +63,11 @@ fun MainScreen() {
     val navController = rememberNavController()
     val scope = rememberCoroutineScope()
     var selectedItemIndex by rememberSaveable { mutableIntStateOf(0) }
-
+    /*
     val items = listOf(
-        DrawerBarScreen.Info,
-        DrawerBarScreen.Info2,
-        DrawerBarScreen.Info3,
         DrawerBarScreen.IdealWeight
     )
-
+    */
     ModalNavigationDrawer(
         drawerContent = {
             ModalDrawerSheet {
@@ -70,6 +75,54 @@ fun MainScreen() {
                     modifier = Modifier
                         .verticalScroll(rememberScrollState())
                 ) {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.Center,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(all = 16.dp)
+                    ) {
+                        Image(
+                            painter = painterResource(id = R.drawable.calculate),
+                            contentDescription = "",
+                            modifier = Modifier.clickable {
+                                scope.launch {
+                                    drawerState.close()
+                                    navController.navigate("home"){
+                                        launchSingleTop = true
+                                    }
+                                }
+                            }
+                        )
+                    }
+
+                    Divider(
+                        color = DarkRed,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(bottom = 16.dp)
+                    )
+
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.Center,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(all = 16.dp)
+                    ) {
+                        Text(
+                            text = "TO\nBE\nADDED",
+                            style = TextStyle(
+                                fontSize = 27.sp,
+                                lineHeight = 43.2.sp,
+                                fontWeight = FontWeight(700),
+                                color = Color(0xFFFFFFFF),
+                                textAlign = TextAlign.Center,
+                            )
+                        )
+                    }
+
+                    /*
                     items.forEachIndexed { index, item ->
                         NavigationDrawerItem(
                             label = { Text(text = item.title) },
@@ -95,11 +148,11 @@ fun MainScreen() {
                                 .padding(NavigationDrawerItemDefaults.ItemPadding)
                         )
                     }
+                    */
                 }
             }
         },
         drawerState = drawerState
-
     ) {
         Scaffold(
             topBar = {
@@ -117,7 +170,10 @@ fun MainScreen() {
                                 tint = Color.White
                             )
                         }
-                    }
+                    },
+                    colors = TopAppBarDefaults.smallTopAppBarColors(
+                        containerColor = DarkGray
+                    )
                 )
             }
         ) {

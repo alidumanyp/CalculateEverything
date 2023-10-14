@@ -20,6 +20,5 @@ fun DrawerNavGraph(navController: NavHostController) {
         composable(route = "weight") {
             IdealWeight()
         }
-
     }
 }
