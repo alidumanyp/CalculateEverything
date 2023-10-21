@@ -70,7 +70,9 @@ fun MainScreen() {
     */
     ModalNavigationDrawer(
         drawerContent = {
-            ModalDrawerSheet {
+            ModalDrawerSheet(
+                drawerContainerColor = MediumGray
+            ) {
                 Column(
                     modifier = Modifier
                         .verticalScroll(rememberScrollState())
