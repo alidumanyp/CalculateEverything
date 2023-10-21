@@ -19,18 +19,25 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.ModalNavigationDrawer
+import androidx.compose.material3.NavigationDrawerItem
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.rememberNavController
+import com.aliduman.calculateeverything.DrawerBarScreen
 import com.aliduman.calculateeverything.DrawerNavGraph
 import com.aliduman.calculateeverything.R
 import com.aliduman.calculateeverything.ui.theme.DarkGray
@@ -46,12 +53,15 @@ fun MainScreen() {
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val navController = rememberNavController()
     val scope = rememberCoroutineScope()
-    //var selectedItemIndex by rememberSaveable { mutableIntStateOf(0) }
-    /*
+    var selectedItemIndex by rememberSaveable { mutableIntStateOf(0) }
+
     val items = listOf(
-        DrawerBarScreen.IdealWeight
+        DrawerBarScreen.Finance,
+        DrawerBarScreen.Fitness,
+        DrawerBarScreen.Math,
+        DrawerBarScreen.Other,
     )
-    */
+
     ModalNavigationDrawer(
         drawerContent = {
             ModalDrawerSheet(
@@ -89,7 +99,6 @@ fun MainScreen() {
                             .padding(bottom = 16.dp)
                     )
 
-                    /*
                     items.forEachIndexed { index, item ->
                         NavigationDrawerItem(
                             label = { Text(text = item.title) },
@@ -112,10 +121,10 @@ fun MainScreen() {
                                 )
                             },
                             modifier = Modifier
-                                .padding(NavigationDrawerItemDefaults.ItemPadding)
+                                .padding(6.dp)
+                                //.padding(NavigationDrawerItemDefaults.ItemPadding)
                         )
                     }
-                    */
                 }
             }
         },

@@ -1,7 +1,6 @@
 package com.aliduman.calculateeverything
 
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.ui.graphics.vector.ImageVector
 
@@ -10,11 +9,25 @@ sealed class DrawerBarScreen(
     val title: String,
     val selectedIcon: ImageVector
 ) {
-    /*
-    object IdealWeight: DrawerBarScreen(
+
+    object Finance: DrawerBarScreen(
         route = "weight",
-        title = "Ideal Weight",
+        title = "Finance",
         selectedIcon = Icons.Default.Person
     )
-    */
+    object Fitness: DrawerBarScreen(
+        route = "weight",
+        title = "Fitness & Health",
+        selectedIcon = Icons.Default.Person
+    )
+    object Math: DrawerBarScreen(
+        route = "weight",
+        title = "Math",
+        selectedIcon = Icons.Default.Person
+    )
+    object Other: DrawerBarScreen(
+        route = "weight",
+        title = "Other",
+        selectedIcon = Icons.Default.Person
+    )
 }
